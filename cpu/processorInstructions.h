@@ -1,6 +1,3 @@
-#ifndef PROCESSORINSTRUCTIONS_H_
-#define PROCESSORINSTRUCTIONS_H_
-
 //Byte Codes
 //Register arithmetics
 #define ADD 0x00
@@ -26,5 +23,3 @@
 #define HALT 0x11
 
 
-
-#endif // PROCESSORINSTRUCTIONS_H_
