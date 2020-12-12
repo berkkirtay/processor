@@ -48,8 +48,8 @@ void cpu(){
          CPU->IP += 2;
          break;
        case STOR:
-         printf("STORED VALUE : %d\n", CPU->registers[CPU->RAM[CPU->IP] & 0x000F]); // I will change this..
-         HDD[CPU->RAM[CPU->IP] & 0x000F] = CPU->registers[CPU->RAM[CPU->IP] & 0x000F];
+         printf("STORED VALUE TO THE RAM : %d\n", CPU->registers[CPU->RAM[CPU->IP] & 0x000F]); 
+         CPU->RAM[CPU->RAM[CPU->IP] & 0x000F] = CPU->registers[CPU->RAM[CPU->IP] & 0x000F];
          CPU->IP++;
          break;
        case PUSH:
@@ -64,7 +64,19 @@ void cpu(){
          CPU->SP++;
          CPU->IP = CPU->RAM[CPU->IP + 1];   
          break;
-       case BR:
+       case DEB: // for debugging
+         printf("RAM : \n");
+         int i = 0;
+         while(CPU->RAM[i] != 0 && CPU->RAM[i+1] != 0 && CPU->RAM[i+2] != 0){
+           printf("%d at %d.\n", CPU->RAM[i], i);
+           i++;
+         }
+         printf("Subroutine registers: \n");
+         i= 0;
+         while(CPU->registers[i] != 0 && CPU->registers[i+1] != 0 && CPU->registers[i+2] != 0){
+           printf("%d at %d.\n", CPU->registers[i], i);
+           i++;
+         }
          break;
        case RET: //Returns from stack
          CPU->SP--;
@@ -73,14 +85,17 @@ void cpu(){
        case JMP:
          CPU->IP = CPU->RAM[CPU->IP + 1];
          break;
-       case PRINT:  // printing compiled data to a file
-         printf("Current Register Value= %d\n",CPU->registers[CPU->RAM[CPU->IP] & 0x000F]);
+       case PRINT:  // printing compiled data to a file (i.e. HDD)
+         printf("Current written value to the file is %d at %p\n", CPU->registers[CPU->RAM[CPU->IP] & 0x000F], &HDD[CPU->RAM[CPU->IP]]);
+         HDD[CPU->RAM[CPU->IP] & 0x000F] = CPU->registers[CPU->RAM[CPU->IP] & 0x000F];
          CPU->IP++;
          break;
        case HALT:
          CPU->IP = -1;
          printf("CPU HALTED\n");
          return;
+         break;
+       default:  // it does nothing when cpu encounters an invalid instruction.
          break;
      }
      int j;

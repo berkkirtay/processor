@@ -18,7 +18,7 @@
 #define PUSH 0x0A
 #define POP 0x0B
 #define CALL 0x0C
-#define BR 0x0D
+#define DEB 0x0D
 #define RET 0x0E
 #define JMP 0x0F //unconditional jump
 #define PRINT 0x10
