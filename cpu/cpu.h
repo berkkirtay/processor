@@ -11,6 +11,7 @@ struct bus{
   uint16_t IP;  // instruction pointer
   uint16_t SP;  // stack pointer
   uint16_t *RAM;
+  // 16 bit stack and register size
   uint16_t registers[15];
   uint16_t stack[15];
   uint8_t opcode;

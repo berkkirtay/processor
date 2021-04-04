@@ -95,7 +95,7 @@ void cpu(){
          printf("CPU HALTED\n");
          return;
          break;
-       default:  // it does nothing when cpu encounters an invalid instruction.
+       default:  // There will be no operation when cpu encounters an invalid instruction.
          break;
      }
      int j;

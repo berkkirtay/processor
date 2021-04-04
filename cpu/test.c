@@ -1,6 +1,6 @@
 #include "cpu.c"
 
-int main(){
+int main(){  
   int16_t instructionSet[]={
   0x0800,  // LOAD 
   0x0010,  // 16 to register[0]
