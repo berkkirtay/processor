@@ -1,0 +1,14 @@
+ANDI R0, R0, 0
+ANDI R1, R1, 0
+ANDI R2, R2, 0
+ANDI R3, R3, 0
+
+LD R0, 0
+LD R1, 1
+LD R2, 0
+
+XORI R1, R1, -1
+ADDI R1, R1, 1
+ADD R0, R0, R1
+
+ST R0, 2
